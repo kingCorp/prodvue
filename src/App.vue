@@ -26,20 +26,24 @@
       <hr>
       <h4>list of available products</h4>
       <div class="container row">
-        <div class="col-md-6">
+        <div class="col-md-4">
           <div class="card card-body mb-2" v-for="product in products" v-bind:key="product._id">
             <h3>{{ product.name }}</h3>
             <p>${{ product.price}}</p>
             <button @click="getSingleProduct(product._id)" class="btn btn-success mb-2">View</button>
           </div>
         </div>
-        <div class="col-md-6">
-          <div>
-            <img src='https://media.wired.com/photos/5b22c5c4b878a15e9ce80d92/master/pass/iphonex-TA.jpg' class="img-thumbnail" >
-            <h5>{{prod.name}}</h5>
-            <p>{{prod.description}}</p>
-            <p>{{prod.category}}</p>
-            <p style="font-size:30px">${{prod.price}}</p>
+        <div class="col-md-8">
+          <div class="flex-box">
+            <div class="image-box">
+              <img src='https://media.wired.com/photos/5b22c5c4b878a15e9ce80d92/master/pass/iphonex-TA.jpg' class="img-thumbnail" >
+            </div>
+            <div class="product-details">
+              <h5 class="title">{{prod.name}}</h5>
+              <p class="category">{{prod.category}}</p>
+              <p class="description">{{prod.description}}</p>
+              <p class="price">${{prod.price}}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -102,6 +106,7 @@ export default {
           this.getProducts()
         })
         .catch(err => {
+          
           console.log(err);
           alert("product couldnt save and error occured");
         });
@@ -122,4 +127,41 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+.flex-box {
+  display: flex;
+}
+
+.image-box {
+  /* flex-grow: 1; */
+  flex-basis: 60%;
+}
+.product-details{
+  padding: 4px 8px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+}
+.category {
+  font-size: 14px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.description {
+  font-size: 16px;
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.price {
+  font-size: 28px;
+  font-weight: 300;
+}
+
 </style>
